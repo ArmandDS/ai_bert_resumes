@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<!--Material textarea-->
+<div class="container">
+  <h2><font color='black'>Introduce your Data</font></h2>
+  <div class="row">
+    <form action = "http://localhost:5000/predict" method = "POST" class="col-md-12">
+      <div class="clearfix">
+          <div class="col-md-6 float-left" >
+            <label for="form7">Candidate Experience</label>
+            <textarea id="form7" class="md-textarea form-control" name="exp" rows="15" >{{ exp}}</textarea>
+          </div>
+          <div class="col-md-6 float-left" >
+            <label for="form10">Job Description</label>
+            <textarea id="form10" class="md-textarea form-control" name="job" rows="15" >{{ job }}</textarea>
+         </div>
+      </div>
+      </br>
+      <div class="clearfix">
+      <button type = "submit" class="btn btn-primary">Get Score</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if predictions %}
+  <h3>Using our Method: This Resume and Job Description have a Simlarity Score of: {{ predictions }}<h3>
+  <h3>Using Spacy: This Resume and Job Description have a Simlarity Score of: {{ predictions_sp }}<h3>
+{% endif %}
+
+
+{% endblock %}
